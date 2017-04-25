@@ -2,11 +2,11 @@ package database
 
 import (
 	"database/sql"
-	"github.com/kabukky/journey/database/migration"
-	"github.com/kabukky/journey/date"
-	"github.com/kabukky/journey/filenames"
-	"github.com/kabukky/journey/helpers"
-	"github.com/kabukky/journey/structure"
+	"github.com/trainmeditations/journey/database/migration"
+	"github.com/trainmeditations/journey/date"
+	"github.com/trainmeditations/journey/filenames"
+	"github.com/trainmeditations/journey/helpers"
+	"github.com/trainmeditations/journey/structure"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/twinj/uuid"
 )
