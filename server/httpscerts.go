@@ -3,7 +3,10 @@
 package server
 
 import (
+	"log"
 	"github.com/kabukky/httpscerts"
+	"github.com/trainmeditations/journey/filenames"
+	"github.com/trainmeditations/journey/configuration"
 )
 
 func CheckHttpsCertificates() {
