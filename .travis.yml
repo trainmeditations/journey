@@ -2,4 +2,5 @@ language: go
 
 notifications:
   email: false
-  
+
+gobuild_args: -x -v --ldflags '-extldflags "-static"'
