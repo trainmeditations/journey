@@ -1,8 +1,20 @@
 language: go
-
-go: 1.8.x
-
+go:
+- 1.8.3
 notifications:
   email: false
-
 gobuild_args: -x -v --ldflags '-extldflags "-static"'
+env:
+- GIMME_ARCH=amd64 GIMME_OS=linux
+before_deploy:
+- go build -x -v --ldflags '-extldflags "-static"'
+- tar -cvJf journey-$GIMME_OS-$GIMME_ARCH.tar.xz journey content built-in
+deploy:
+  provider: releases
+  api_key:
+    secure: amYE4en+lpIZy81P+IU40n/YA26WKpujECWQMooyIRnQCAJX4RftAeYM/cQdfp260mE5kbjbzlL9WWe8/c2icTBnWkKyrX5578VbxItxX9/XXKcaPRBXPEgZE0d4OMfLvDoBoB9EHSjJIp0PmK4ymPzL9j3L+4KwEyVcJ0FleI0CTLbE5ix9qcO+jH7KKuGQiXrIAcppQxy/TNb49/dBIEJymUxxaAFcAPzDRwD/TARTBy0rIcLrcD4kVTNL4NWsWfxtTByUeJ4lXBadblaoK3xdcxDMMVnzCuCssjxxGY89xzqLc2Q7DRsR83dvtE/uCO8/DZHOvyJsnlOcX7jy6Imw6QQtYd9zd9ttW/lkZh+/cggZs3uBqGnF/bj665jMsZyyN9nSmDLWXWVDLavMYUO5bG+1ydAcVDGr2bqLSbc7hICMLAZD6qPcO57ZI4qFeCmOq5+HBz4CVf8ha41P7YV8IpOwB4CvkO5iK9PbaoW2hQDuwz0O+uoMkKtDhRk8VvImSTNEgNGaniX7Wy5m2wY7zhhzNwadbi//lkLF15+z98tv+LYi6MVteFuV77sGgq8NZUsbj6MItu2fcCOG1J8OnN3BAvQu1Yb2T6cJaUo0AsgHxlH6Hbm24iW5AqnXYJL/uDkJe4yAV1TQLBIb+rd1LoJL9Ec4tjnHhbejCAY=
+  file: 'journey-$GIMME_OS-$GIMME_ARCH.tar.xz'
+  skip_cleanup: true
+  on:
+    repo: trainmeditations/journey
+    tags: true
