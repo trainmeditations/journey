@@ -5,9 +5,7 @@ notifications:
   email: false
 gobuild_args: -x -v --ldflags '-extldflags "-static"'
 env:
-  global:
-  - GIMME_ARCH=amd64
-  - GIMME_OS=linux
+- GIMME_ARCH=amd64 GIMME_OS=linux
 before_deploy:
 - go build -x -v --ldflags '-extldflags "-static"'
 - tar -cvJf journey-$GIMME_OS-$GIMME_ARCH.tar.xz journey content built-in
