@@ -6,11 +6,14 @@ go:
 notifications:
   email: false
 
-gobuild_args: -x -v --ldflags '-extldflags "-static"'
+gobuild_args: &gobuildargs -x -v --ldflags '-extldflags "-static"'
 
 env:
   global:
     - GIMME_ARCH=amd64
-  matrix:
     - GIMME_OS=linux
-    - GIMME_OS=windows
+
+after_success:
+  - go build -x -v --ldflags '-extldflags "-static"'
+  - ls -la journey
+  - ldd journey
