@@ -10,7 +10,7 @@ gobuild_args: -x -v --ldflags '-extldflags "-static"'
 
 env:
   global:
-    - GOOS=linux
+    - GIMME_OS=linux
   matrix:
-    - GOARCH=amd64
-    - GOARCH=386
+    - GIMME_ARCH=amd64
+    - GIMME_ARCH=386
